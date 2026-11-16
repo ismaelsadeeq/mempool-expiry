@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="364" viewBox="0 0 820 364" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="820" height="364" fill="#ffffff"/>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Confirmation delay</text>
+<text x="28" y="55" font-size="12.5" fill="#8a97a5">time from first expiry to the confirming block</text>
+<rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#4f9d77"/>
+<text x="150" y="118.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;1d</text>
+<text x="680.0" y="118.0" font-size="12.5" fill="#8a97a5">275,667 (32%)</text>
+<rect x="166" y="151.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="151.0" width="400.6" height="22" rx="5" fill="#4f9d77"/>
+<text x="150" y="166.0" text-anchor="end" font-size="13.5" fill="#222b36">1-7d</text>
+<text x="576.6" y="166.0" font-size="12.5" fill="#8a97a5">219,085 (25%)</text>
+<rect x="166" y="199.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="199.0" width="366.0" height="22" rx="5" fill="#4f9d77"/>
+<text x="150" y="214.0" text-anchor="end" font-size="13.5" fill="#222b36">7-30d</text>
+<text x="542.0" y="214.0" font-size="12.5" fill="#8a97a5">200,212 (23%)</text>
+<rect x="166" y="247.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="247.0" width="217.9" height="22" rx="5" fill="#4f9d77"/>
+<text x="150" y="262.0" text-anchor="end" font-size="13.5" fill="#222b36">30-90d</text>
+<text x="393.9" y="262.0" font-size="12.5" fill="#8a97a5">119,195 (14%)</text>
+<rect x="166" y="295.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="295.0" width="90.1" height="22" rx="5" fill="#4f9d77"/>
+<text x="150" y="310.0" text-anchor="end" font-size="13.5" fill="#222b36">&gt;90d</text>
+<text x="266.1" y="310.0" font-size="12.5" fill="#8a97a5">49,292 (6%)</text>
+</svg>

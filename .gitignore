@@ -1,0 +1,10 @@
+# large data / generated artifacts (not source)
+expiry.log.zst
+added.log.zst
+replaced.log.zst
+expiry.db
+expiry.db-wal
+expiry.db-shm
+results/results.csv
+__pycache__/
+*.pyc

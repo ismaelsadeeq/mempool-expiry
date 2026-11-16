@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="460" viewBox="0 0 820 460" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="820" height="460" fill="#ffffff"/>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Cross-node spread of first expiry</text>
+<text x="28" y="55" font-size="12.5" fill="#8a97a5">txids seen by 2+ nodes: max minus min of per-node first expiry</text>
+<rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="118.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=10s</text>
+<text x="680.0" y="118.0" font-size="12.5" fill="#8a97a5">247,269 (40%)</text>
+<rect x="166" y="151.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="151.0" width="185.8" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="166.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=60s</text>
+<text x="361.8" y="166.0" font-size="12.5" fill="#8a97a5">91,171 (15%)</text>
+<rect x="166" y="199.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="199.0" width="37.2" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="214.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=5m</text>
+<text x="213.2" y="214.0" font-size="12.5" fill="#8a97a5">18,247 (3%)</text>
+<rect x="166" y="247.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="247.0" width="61.8" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="262.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=1h</text>
+<text x="237.8" y="262.0" font-size="12.5" fill="#8a97a5">30,344 (5%)</text>
+<rect x="166" y="295.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="295.0" width="58.5" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="310.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=1d</text>
+<text x="234.5" y="310.0" font-size="12.5" fill="#8a97a5">28,720 (5%)</text>
+<rect x="166" y="343.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="343.0" width="111.9" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="358.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=14d</text>
+<text x="287.9" y="358.0" font-size="12.5" fill="#8a97a5">54,889 (9%)</text>
+<rect x="166" y="391.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="391.0" width="309.2" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="406.0" text-anchor="end" font-size="13.5" fill="#222b36">&gt;14d</text>
+<text x="485.2" y="406.0" font-size="12.5" fill="#8a97a5">151,711 (24%)</text>
+</svg>

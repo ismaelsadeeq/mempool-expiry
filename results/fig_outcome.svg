@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="300" viewBox="0 0 820 300" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="820" height="300" fill="#ffffff"/>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Fate of expired transactions</text>
+<text x="28" y="55" font-size="12.5" fill="#8a97a5">938,157 unique transactions, Feb 2024 to Oct 2026</text>
+<rect x="166" y="143.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="143.0" width="504.0" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="158.0" text-anchor="end" font-size="13.5" fill="#222b36">confirmed</text>
+<text x="680.0" y="158.0" font-size="12.5" fill="#8a97a5">863,451 (92%)</text>
+<rect x="166" y="191.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="191.0" width="43.6" height="22" rx="5" fill="#3b73a8"/>
+<text x="150" y="206.0" text-anchor="end" font-size="13.5" fill="#222b36">never confirmed</text>
+<text x="219.6" y="206.0" font-size="12.5" fill="#8a97a5">74,706 (8%)</text>
+</svg>

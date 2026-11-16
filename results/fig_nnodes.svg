@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="796" viewBox="0 0 820 796" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="820" height="796" fill="#ffffff"/>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Transactions by number of nodes that expired them</text>
+<text x="28" y="55" font-size="12.5" fill="#8a97a5">how widely each transaction propagated across the fleet</text>
+<rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="118.0" text-anchor="end" font-size="13.5" fill="#222b36">1 nodes</text>
+<text x="680.0" y="118.0" font-size="12.5" fill="#8a97a5">315,806 (34%)</text>
+<rect x="166" y="151.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="151.0" width="19.4" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="166.0" text-anchor="end" font-size="13.5" fill="#222b36">2 nodes</text>
+<text x="195.4" y="166.0" font-size="12.5" fill="#8a97a5">12,148 (1%)</text>
+<rect x="166" y="199.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="199.0" width="3.2" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="214.0" text-anchor="end" font-size="13.5" fill="#222b36">3 nodes</text>
+<text x="179.2" y="214.0" font-size="12.5" fill="#8a97a5">1,974 (0%)</text>
+<rect x="166" y="247.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="247.0" width="3.0" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="262.0" text-anchor="end" font-size="13.5" fill="#222b36">4 nodes</text>
+<text x="179.0" y="262.0" font-size="12.5" fill="#8a97a5">836 (0%)</text>
+<rect x="166" y="295.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="295.0" width="4.9" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="310.0" text-anchor="end" font-size="13.5" fill="#222b36">5 nodes</text>
+<text x="180.9" y="310.0" font-size="12.5" fill="#8a97a5">3,077 (0%)</text>
+<rect x="166" y="343.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="343.0" width="8.5" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="358.0" text-anchor="end" font-size="13.5" fill="#222b36">6 nodes</text>
+<text x="184.5" y="358.0" font-size="12.5" fill="#8a97a5">5,341 (1%)</text>
+<rect x="166" y="391.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="391.0" width="30.9" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="406.0" text-anchor="end" font-size="13.5" fill="#222b36">7 nodes</text>
+<text x="206.9" y="406.0" font-size="12.5" fill="#8a97a5">19,373 (2%)</text>
+<rect x="166" y="439.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="439.0" width="119.2" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="454.0" text-anchor="end" font-size="13.5" fill="#222b36">8 nodes</text>
+<text x="295.2" y="454.0" font-size="12.5" fill="#8a97a5">74,701 (8%)</text>
+<rect x="166" y="487.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="487.0" width="454.3" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="502.0" text-anchor="end" font-size="13.5" fill="#222b36">9 nodes</text>
+<text x="630.3" y="502.0" font-size="12.5" fill="#8a97a5">284,675 (30%)</text>
+<rect x="166" y="535.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="535.0" width="118.1" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="550.0" text-anchor="end" font-size="13.5" fill="#222b36">10 nodes</text>
+<text x="294.1" y="550.0" font-size="12.5" fill="#8a97a5">73,982 (8%)</text>
+<rect x="166" y="583.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="583.0" width="57.2" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="598.0" text-anchor="end" font-size="13.5" fill="#222b36">11 nodes</text>
+<text x="233.2" y="598.0" font-size="12.5" fill="#8a97a5">35,821 (4%)</text>
+<rect x="166" y="631.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="631.0" width="63.0" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="646.0" text-anchor="end" font-size="13.5" fill="#222b36">12 nodes</text>
+<text x="239.0" y="646.0" font-size="12.5" fill="#8a97a5">39,450 (4%)</text>
+<rect x="166" y="679.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="679.0" width="111.9" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="694.0" text-anchor="end" font-size="13.5" fill="#222b36">13 nodes</text>
+<text x="287.9" y="694.0" font-size="12.5" fill="#8a97a5">70,101 (7%)</text>
+<rect x="166" y="727.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
+<rect x="166" y="727.0" width="3.0" height="22" rx="5" fill="#8a97a5"/>
+<text x="150" y="742.0" text-anchor="end" font-size="13.5" fill="#222b36">14 nodes</text>
+<text x="179.0" y="742.0" font-size="12.5" fill="#8a97a5">872 (0%)</text>
+</svg>
