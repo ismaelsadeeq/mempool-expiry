@@ -8,3 +8,4 @@ expiry.db-shm
 results/results.csv
 __pycache__/
 *.pyc
+*.bak
