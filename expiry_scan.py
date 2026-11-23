@@ -655,7 +655,9 @@ def cmd_report(args):
     total = len(rows)
     conf = [r for r in rows if r[6] is not None]
     delays = [r[7] - r[5] for r in conf]            # block_time - last_expiry
-    delays_first = [r[7] - r[4] for r in conf]      # block_time - first_expiry (cleaner)
+    delays_first = [r[7] - r[4] for r in conf]      # block_time - first_expiry
+    df_after = [d for d in delays_first if d >= 0]  # genuinely mined after first expiry
+    before = sum(1 for d in delays_first if d < 0)  # lagging-node eviction of already-mined tx
     buckets = {"<1d": 0, "1-7d": 0, "7-30d": 0, ">30d": 0, "neg": 0}
     for d in delays:
         if d < 0:
@@ -678,9 +680,12 @@ def cmd_report(args):
             pr(f"delay(vs last_expiry) p10/p50/p90/max  {pct(delays,10)/86400:.2f} / "
                f"{pct(delays,50)/86400:.2f} / {pct(delays,90)/86400:.2f} / "
                f"{max(delays)/86400:.2f} days")
-            pr(f"delay(vs first_expiry) p50/p90/max      "
-               f"{pct(delays_first,50)/86400:.2f} / {pct(delays_first,90)/86400:.2f} / "
-               f"{max(delays_first)/86400:.2f} days  (cleaner; not skewed by re-entry)")
+            pr(f"mined before first_expiry (lagging node): {before:,} "
+               f"({100*before/max(len(conf),1):.0f}% of confirmed)")
+            if df_after:
+                pr(f"delay after first_expiry (neg excluded) p50/p90/max  "
+                   f"{pct(df_after,50)/86400:.2f} / {pct(df_after,90)/86400:.2f} / "
+                   f"{max(df_after)/86400:.2f} days")
             pr("delay buckets:         " +
                "  ".join(f"{k}={v:,}" for k, v in buckets.items()))
         # per month of first expiry

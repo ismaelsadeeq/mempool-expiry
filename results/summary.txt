@@ -1,8 +1,9 @@
 unique expired txids   938,157
-later confirmed        863,451 (92.0%)
+later confirmed        863,454 (92.0%)
 delay(vs last_expiry) p10/p50/p90/max  -14.00 / 3.37 / 12.90 / 316.92 days
-delay(vs first_expiry) p50/p90/max      4.81 / 55.42 / 316.92 days  (cleaner; not skewed by re-entry)
-delay buckets:         <1d=58,514  1-7d=350,478  7-30d=158,353  >30d=43,507  neg=252,599
+mined before first_expiry (lagging node): 252,571 (29% of confirmed)
+delay after first_expiry (neg excluded) p50/p90/max  10.76 / 80.49 / 316.92 days
+delay buckets:         <1d=58,514  1-7d=350,478  7-30d=158,353  >30d=43,510  neg=252,599
 
 by month of first expiry (confirmed / total):
   2024-02  21,955/22,243 (99%)
@@ -24,19 +25,19 @@ by month of first expiry (confirmed / total):
   2025-11  13,435/13,454 (100%)
   2025-12  169/222 (76%)
   2026-01  3,851/5,810 (66%)
-  2026-02  3,660/3,742 (98%)
+  2026-02  3,661/3,742 (98%)
   2026-03  2,691/3,563 (76%)
   2026-04  10,793/14,116 (76%)
-  2026-05  44,534/67,904 (66%)
+  2026-05  44,535/67,904 (66%)
   2026-06  18,338/20,523 (89%)
   2026-07  1,237/2,588 (48%)
   2026-08  148,065/148,637 (100%)
   2026-09  107,227/107,717 (100%)
-  2026-10  552/631 (87%)
+  2026-10  553/631 (88%)
 
 1 node: 315,806 txids, 309,640 confirmed (98.0%)
 
-many nodes: 622,351 txids, 553,811 confirmed (89.0%)
+many nodes: 622,351 txids, 553,814 confirmed (89.0%)
 
 expired repeatedly (n_events>n_nodes): 316,381
-rebroadcast txids: 316,381 (33.7%), of which confirmed 274,787 (86.9%)
+rebroadcast txids: 316,381 (33.7%), of which confirmed 274,789 (86.9%)

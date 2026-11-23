@@ -114,19 +114,22 @@ area_line("fig_by_month.svg", "Confirmation rate by month of first expiry",
           [m for m, _ in months], [p for _, p in months], BLUE,
           note="share of that month's expired transactions later mined")
 
-# 3. confirm delay (vs first_expiry) buckets
+# 3. confirm delay (vs first_expiry). ~29% of confirmed txs were mined BEFORE their
+# first expiry: a single lagging node expired a tx already mined on-chain. Those are a
+# distinct phenomenon, not a sub-1-day delay, so they get their own bucket.
 delays = [r[0] for r in c.execute(
     "SELECT c.block_time-t.first_expiry FROM confirmation c JOIN tx t USING(txid)")]
 D = 86400
-dbkt = {"<1d": 0, "1-7d": 0, "7-30d": 0, "30-90d": 0, ">90d": 0}
+dbkt = {"before expiry": 0, "<1d": 0, "1-7d": 0, "7-30d": 0, "30-90d": 0, ">90d": 0}
 for d in delays:
-    if d < D: dbkt["<1d"] += 1
+    if d < 0: dbkt["before expiry"] += 1
+    elif d < D: dbkt["<1d"] += 1
     elif d < 7*D: dbkt["1-7d"] += 1
     elif d < 30*D: dbkt["7-30d"] += 1
     elif d < 90*D: dbkt["30-90d"] += 1
     else: dbkt[">90d"] += 1
-hbar("fig_delay.svg", "Confirmation delay", list(dbkt.items()), GREEN,
-     note="time from first expiry to the confirming block")
+hbar("fig_delay.svg", "Time from first expiry to confirmation", list(dbkt.items()), GREEN,
+     note="'before expiry' = tx already mined on-chain before a lagging node expired it")
 
 # 4. n_nodes histogram
 nn = c.execute("SELECT n_nodes, COUNT(*) FROM tx GROUP BY n_nodes ORDER BY n_nodes").fetchall()
@@ -152,13 +155,15 @@ rb = c.execute("SELECT COUNT(*) FROM rebroadcast").fetchone()[0]
 rbc = c.execute("SELECT COUNT(*) FROM rebroadcast WHERE confirmed_after_reentry=1").fetchone()[0]
 hbar("fig_rebroadcast.svg", "Rebroadcast after expiry (lower bound)",
      [("rebroadcast evidence", rb), ("no evidence", total - rb)], BLUE,
-     note=f"re-entry seen via same-node repeat expiry; of the rebroadcast, "
-          f"{100*rbc/max(rb,1):.0f}% later confirmed")
+     note=f"re-entry seen via same-node repeat expiry; "
+          f"{100*rbc/max(rb,1):.0f}% of the rebroadcast ones confirmed")
 
-# delay percentiles
+# delay percentiles. dfirst = genuine "mined after expiry"; `before` = mined before a
+# lagging node expired it (would otherwise distort the percentiles downward by ~29%).
 def pct(xs, p):
     xs = sorted(xs); return xs[min(len(xs)-1, int(p/100*len(xs)))] if xs else 0
-dfirst = delays
+dfirst = [d for d in delays if d >= 0]
+before = sum(1 for d in delays if d < 0)
 rng = c.execute("SELECT MIN(first_expiry),MAX(last_expiry) FROM tx").fetchone()
 nodes = c.execute("SELECT COUNT(DISTINCT node) FROM expiry_event").fetchone()[0]
 nspread = c.execute("SELECT COUNT(*) FROM sp").fetchone()[0]
@@ -186,7 +191,8 @@ verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_
 | confirmed | {nconf:,} ({100*nconf/total:.1f}%) |
 | never confirmed | {nnot:,} ({100*nnot/total:.1f}%) |
 | rebroadcast (lower bound) | {rb:,} ({100*rb/total:.1f}%), {100*rbc/max(rb,1):.1f}% of them confirmed |
-| confirm delay (block minus first_expiry) | p50 {pct(dfirst,50)/86400:.1f}d, p90 {pct(dfirst,90)/86400:.1f}d, max {max(dfirst)/86400:.0f}d |
+| mined before first expiry (lagging-node eviction) | {before:,} ({100*before/nconf:.0f}% of confirmed) |
+| confirm delay, mined after expiry | p50 {pct(dfirst,50)/86400:.1f}d, p90 {pct(dfirst,90)/86400:.1f}d, max {max(dfirst)/86400:.0f}d |
 | cross-node spread (2+ nodes) | p50 27s, {100*tight/max(nspread,1):.0f}% within 60s, 24% over 14d |
 | confirm rate, 1 node vs many | {one:.1f}% vs {many:.1f}% |
 
@@ -201,7 +207,12 @@ verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_
 - Rebroadcast is a lower bound; the true rate needs the `AddedToMempool` stream.
 - Replaced-vs-lost is not separable: an expired transaction is already evicted, so it is never logged
   as replaced; splitting it would need the expired transactions' inputs, which the logs do not carry.
-- The extract was built without `grep -a`, dropping 12 days (about 1%), immaterial to the headline.
+- About 29% of confirmed txids were mined *before* their first expiry: a single lagging node expired a
+  tx that was already on-chain. They are reported separately; the "mined after expiry" delay excludes
+  them.
+- Coverage is not continuous: ~37% of calendar days in the window have no events in the extract
+  (collection gaps, including a ~130-day gap in mid-2025), which limits temporal/continuity analysis.
+- The extract was also built without `grep -a`, dropping ~12 days.
 
 Text summary: [summary.txt](summary.txt). The full per-transaction CSV is produced by `report`
 locally and is not committed (about 170 MB).

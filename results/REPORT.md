@@ -6,10 +6,11 @@ verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_
 
 | metric | value |
 | --- | --- |
-| confirmed | 863,451 (92.0%) |
-| never confirmed | 74,706 (8.0%) |
+| confirmed | 863,454 (92.0%) |
+| never confirmed | 74,703 (8.0%) |
 | rebroadcast (lower bound) | 316,381 (33.7%), 86.9% of them confirmed |
-| confirm delay (block minus first_expiry) | p50 4.8d, p90 55.4d, max 317d |
+| mined before first expiry (lagging-node eviction) | 252,571 (29% of confirmed) |
+| confirm delay, mined after expiry | p50 10.8d, p90 80.5d, max 317d |
 | cross-node spread (2+ nodes) | p50 27s, 54% within 60s, 24% over 14d |
 | confirm rate, 1 node vs many | 98.0% vs 89.0% |
 
@@ -24,7 +25,12 @@ verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_
 - Rebroadcast is a lower bound; the true rate needs the `AddedToMempool` stream.
 - Replaced-vs-lost is not separable: an expired transaction is already evicted, so it is never logged
   as replaced; splitting it would need the expired transactions' inputs, which the logs do not carry.
-- The extract was built without `grep -a`, dropping 12 days (about 1%), immaterial to the headline.
+- About 29% of confirmed txids were mined *before* their first expiry: a single lagging node expired a
+  tx that was already on-chain. They are reported separately; the "mined after expiry" delay excludes
+  them.
+- Coverage is not continuous: ~37% of calendar days in the window have no events in the extract
+  (collection gaps, including a ~130-day gap in mid-2025), which limits temporal/continuity analysis.
+- The extract was also built without `grep -a`, dropping ~12 days.
 
 Text summary: [summary.txt](summary.txt). The full per-transaction CSV is produced by `report`
 locally and is not committed (about 170 MB).

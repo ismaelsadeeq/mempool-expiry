@@ -5,9 +5,9 @@
 <rect x="166" y="143.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
 <rect x="166" y="143.0" width="504.0" height="22" rx="5" fill="#3b73a8"/>
 <text x="150" y="158.0" text-anchor="end" font-size="13.5" fill="#222b36">confirmed</text>
-<text x="680.0" y="158.0" font-size="12.5" fill="#8a97a5">863,451 (92%)</text>
+<text x="680.0" y="158.0" font-size="12.5" fill="#8a97a5">863,454 (92%)</text>
 <rect x="166" y="191.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
 <rect x="166" y="191.0" width="43.6" height="22" rx="5" fill="#3b73a8"/>
 <text x="150" y="206.0" text-anchor="end" font-size="13.5" fill="#222b36">never confirmed</text>
-<text x="219.6" y="206.0" font-size="12.5" fill="#8a97a5">74,706 (8%)</text>
+<text x="219.6" y="206.0" font-size="12.5" fill="#8a97a5">74,703 (8%)</text>
 </svg>
