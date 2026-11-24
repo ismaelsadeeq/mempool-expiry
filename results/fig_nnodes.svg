@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="820" height="796" viewBox="0 0 820 796" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
 <rect width="820" height="796" fill="#ffffff"/>
-<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Transactions by number of nodes that expired them</text>
-<text x="28" y="55" font-size="12.5" fill="#8a97a5">how widely each transaction propagated across the fleet</text>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">How many nodes expired each transaction</text>
+<text x="28" y="55" font-size="12.5" fill="#8a97a5">more nodes means the tx was seen more widely across the fleet</text>
 <rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
 <rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#8a97a5"/>
 <text x="150" y="118.0" text-anchor="end" font-size="13.5" fill="#222b36">1 nodes</text>

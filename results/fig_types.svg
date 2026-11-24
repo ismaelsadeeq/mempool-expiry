@@ -1,51 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="436" viewBox="0 0 920 436" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-<rect width="920" height="436" fill="#fff"/>
-<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">What are the expired transactions?</text>
-<text x="28" y="54" font-size="12.5" fill="#8a97a5">share by type, confirmed txs only (ordinals / runes / other OP_RETURN / regular)</text>
-<text x="140" y="92" text-anchor="end" font-size="12.5" fill="#222b36">2025-09-30</text>
-<rect x="150.0" y="70" width="746.0" height="30" fill="#dd8452"/>
-<text x="523.0" y="90" text-anchor="middle" font-size="11" fill="#fff">100%</text>
-<text x="140" y="138" text-anchor="end" font-size="12.5" fill="#222b36">2026-05-24</text>
-<rect x="150.0" y="116" width="743.0" height="30" fill="#dd8452"/>
-<text x="521.5" y="136" text-anchor="middle" font-size="11" fill="#fff">100%</text>
-<rect x="893.0" y="116" width="3.0" height="30" fill="#55a868"/>
-<text x="140" y="184" text-anchor="end" font-size="12.5" fill="#222b36">2025-09-10</text>
-<rect x="150.0" y="162" width="4.5" height="30" fill="#c44e52"/>
-<rect x="154.5" y="162" width="737.0" height="30" fill="#dd8452"/>
-<text x="523.0" y="182" text-anchor="middle" font-size="11" fill="#fff">99%</text>
-<rect x="891.5" y="162" width="4.5" height="30" fill="#55a868"/>
-<text x="140" y="230" text-anchor="end" font-size="12.5" fill="#222b36">2025-01-23</text>
-<rect x="150.0" y="208" width="16.4" height="30" fill="#c44e52"/>
-<rect x="166.4" y="208" width="668.4" height="30" fill="#dd8452"/>
-<text x="500.6" y="228" text-anchor="middle" font-size="11" fill="#fff">90%</text>
-<rect x="834.8" y="208" width="1.5" height="30" fill="#8172b3"/>
-<rect x="836.3" y="208" width="59.7" height="30" fill="#55a868"/>
-<text x="866.2" y="228" text-anchor="middle" font-size="11" fill="#fff">8%</text>
-<text x="140" y="276" text-anchor="end" font-size="12.5" fill="#222b36">2025-01-12</text>
-<rect x="150.0" y="254" width="85.0" height="30" fill="#c44e52"/>
-<text x="192.5" y="274" text-anchor="middle" font-size="11" fill="#fff">11%</text>
-<rect x="235.0" y="254" width="11.9" height="30" fill="#dd8452"/>
-<rect x="247.0" y="254" width="649.0" height="30" fill="#55a868"/>
-<text x="571.5" y="274" text-anchor="middle" font-size="11" fill="#fff">87%</text>
-<text x="140" y="322" text-anchor="end" font-size="12.5" fill="#222b36">2026-08-23</text>
-<rect x="150.0" y="300" width="1.5" height="30" fill="#dd8452"/>
-<rect x="151.5" y="300" width="25.4" height="30" fill="#8172b3"/>
-<rect x="176.9" y="300" width="719.1" height="30" fill="#55a868"/>
-<text x="536.4" y="320" text-anchor="middle" font-size="11" fill="#fff">96%</text>
-<text x="140" y="368" text-anchor="end" font-size="12.5" fill="#222b36">baseline(all)</text>
-<rect x="150.0" y="346" width="79.8" height="30" fill="#c44e52"/>
-<text x="189.9" y="366" text-anchor="middle" font-size="11" fill="#fff">11%</text>
-<rect x="229.8" y="346" width="298.8" height="30" fill="#dd8452"/>
-<text x="379.2" y="366" text-anchor="middle" font-size="11" fill="#fff">40%</text>
-<rect x="528.6" y="346" width="15.7" height="30" fill="#8172b3"/>
-<rect x="544.3" y="346" width="351.7" height="30" fill="#55a868"/>
-<text x="720.1" y="366" text-anchor="middle" font-size="11" fill="#fff">47%</text>
-<rect x="150" y="410" width="13" height="13" fill="#c44e52"/>
-<text x="168" y="421" font-size="11.5" fill="#222b36">inscription</text>
-<rect x="300" y="410" width="13" height="13" fill="#dd8452"/>
-<text x="318" y="421" font-size="11.5" fill="#222b36">rune</text>
-<rect x="450" y="410" width="13" height="13" fill="#8172b3"/>
-<text x="468" y="421" font-size="11.5" fill="#222b36">data</text>
-<rect x="600" y="410" width="13" height="13" fill="#55a868"/>
-<text x="618" y="421" font-size="11.5" fill="#222b36">regular</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="472" viewBox="0 0 960 472" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="960" height="472" fill="#ffffff"/>
+<defs>
+<clipPath id="b0"><rect x="170" y="99.0" width="700" height="28" rx="7"/></clipPath>
+<clipPath id="b1"><rect x="170" y="145.0" width="700" height="28" rx="7"/></clipPath>
+<clipPath id="b2"><rect x="170" y="191.0" width="700" height="28" rx="7"/></clipPath>
+<clipPath id="b3"><rect x="170" y="237.0" width="700" height="28" rx="7"/></clipPath>
+<clipPath id="b4"><rect x="170" y="283.0" width="700" height="28" rx="7"/></clipPath>
+<clipPath id="b5"><rect x="170" y="329.0" width="700" height="28" rx="7"/></clipPath>
+<clipPath id="b6"><rect x="170" y="375.0" width="700" height="28" rx="7"/></clipPath>
+</defs>
+<text x="30" y="36" font-size="18" font-weight="600" fill="#222b36">What kind of transactions expire?</text>
+<text x="30" y="58" font-size="13" fill="#8a97a5">share by type, for the expired txs that were later mined</text>
+<text x="156" y="117.5" text-anchor="end" font-size="13" font-weight="400" fill="#222b36">2025-09-30</text>
+<g clip-path="url(#b0)">
+<rect x="170" y="99.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="99.0" width="700.00" height="28" fill="#e0a44e"/>
+<text x="520.0" y="117.5" text-anchor="middle" font-size="11.5" fill="#ffffff">100%</text>
+</g>
+<text x="156" y="163.5" text-anchor="end" font-size="13" font-weight="400" fill="#222b36">2026-05-24</text>
+<g clip-path="url(#b1)">
+<rect x="170" y="145.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="145.0" width="2.80" height="28" fill="#5aab82"/>
+<rect x="172.80" y="145.0" width="697.20" height="28" fill="#e0a44e"/>
+<text x="521.4" y="163.5" text-anchor="middle" font-size="11.5" fill="#ffffff">100%</text>
+<rect x="171.90" y="145.0" width="1.8" height="28" fill="#ffffff"/>
+</g>
+<text x="156" y="209.5" text-anchor="end" font-size="13" font-weight="400" fill="#222b36">2025-09-10</text>
+<g clip-path="url(#b2)">
+<rect x="170" y="191.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="191.0" width="4.20" height="28" fill="#5aab82"/>
+<rect x="174.20" y="191.0" width="691.60" height="28" fill="#e0a44e"/>
+<text x="520.0" y="209.5" text-anchor="middle" font-size="11.5" fill="#ffffff">99%</text>
+<rect x="865.80" y="191.0" width="4.20" height="28" fill="#d06a6a"/>
+<rect x="173.30" y="191.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="864.90" y="191.0" width="1.8" height="28" fill="#ffffff"/>
+</g>
+<text x="156" y="255.5" text-anchor="end" font-size="13" font-weight="400" fill="#222b36">2025-01-23</text>
+<g clip-path="url(#b3)">
+<rect x="170" y="237.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="237.0" width="56.00" height="28" fill="#5aab82"/>
+<text x="198.0" y="255.5" text-anchor="middle" font-size="11.5" fill="#ffffff">8%</text>
+<rect x="226.00" y="237.0" width="627.20" height="28" fill="#e0a44e"/>
+<text x="539.6" y="255.5" text-anchor="middle" font-size="11.5" fill="#ffffff">90%</text>
+<rect x="853.20" y="237.0" width="15.40" height="28" fill="#d06a6a"/>
+<rect x="868.60" y="237.0" width="1.40" height="28" fill="#8192ad"/>
+<rect x="225.10" y="237.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="852.30" y="237.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="867.70" y="237.0" width="1.8" height="28" fill="#ffffff"/>
+</g>
+<text x="156" y="301.5" text-anchor="end" font-size="13" font-weight="400" fill="#222b36">2025-01-12</text>
+<g clip-path="url(#b4)">
+<rect x="170" y="283.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="283.0" width="609.00" height="28" fill="#5aab82"/>
+<text x="474.5" y="301.5" text-anchor="middle" font-size="11.5" fill="#ffffff">87%</text>
+<rect x="779.00" y="283.0" width="11.20" height="28" fill="#e0a44e"/>
+<rect x="790.20" y="283.0" width="79.80" height="28" fill="#d06a6a"/>
+<text x="830.1" y="301.5" text-anchor="middle" font-size="11.5" fill="#ffffff">11%</text>
+<rect x="778.10" y="283.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="789.30" y="283.0" width="1.8" height="28" fill="#ffffff"/>
+</g>
+<text x="156" y="347.5" text-anchor="end" font-size="13" font-weight="400" fill="#222b36">2026-08-23</text>
+<g clip-path="url(#b5)">
+<rect x="170" y="329.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="329.0" width="674.80" height="28" fill="#5aab82"/>
+<text x="507.4" y="347.5" text-anchor="middle" font-size="11.5" fill="#ffffff">96%</text>
+<rect x="844.80" y="329.0" width="1.40" height="28" fill="#e0a44e"/>
+<rect x="846.20" y="329.0" width="23.80" height="28" fill="#8192ad"/>
+<rect x="843.90" y="329.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="845.30" y="329.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="845.30" y="329.0" width="1.8" height="28" fill="#ffffff"/>
+</g>
+<text x="156" y="393.5" text-anchor="end" font-size="13" font-weight="600" fill="#222b36">all expired</text>
+<g clip-path="url(#b6)">
+<rect x="170" y="375.0" width="700" height="28" fill="#eef1f4"/>
+<rect x="170.00" y="375.0" width="330.05" height="28" fill="#5aab82"/>
+<text x="335.0" y="393.5" text-anchor="middle" font-size="11.5" fill="#ffffff">47%</text>
+<rect x="500.05" y="375.0" width="280.35" height="28" fill="#e0a44e"/>
+<text x="640.2" y="393.5" text-anchor="middle" font-size="11.5" fill="#ffffff">40%</text>
+<rect x="780.40" y="375.0" width="74.90" height="28" fill="#d06a6a"/>
+<text x="817.9" y="393.5" text-anchor="middle" font-size="11.5" fill="#ffffff">11%</text>
+<rect x="855.30" y="375.0" width="14.70" height="28" fill="#8192ad"/>
+<rect x="499.15" y="375.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="779.50" y="375.0" width="1.8" height="28" fill="#ffffff"/>
+<rect x="854.40" y="375.0" width="1.8" height="28" fill="#ffffff"/>
+</g>
+<rect x="170" y="442" width="13" height="13" rx="3" fill="#5aab82"/>
+<text x="189" y="453" font-size="12.5" fill="#222b36">regular payment</text>
+<rect x="330" y="442" width="13" height="13" rx="3" fill="#e0a44e"/>
+<text x="349" y="453" font-size="12.5" fill="#222b36">rune</text>
+<rect x="490" y="442" width="13" height="13" rx="3" fill="#d06a6a"/>
+<text x="509" y="453" font-size="12.5" fill="#222b36">inscription</text>
+<rect x="650" y="442" width="13" height="13" rx="3" fill="#8192ad"/>
+<text x="669" y="453" font-size="12.5" fill="#222b36">other data</text>
 </svg>

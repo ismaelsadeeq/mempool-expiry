@@ -34,9 +34,10 @@ for i, v in enumerate(vals):
 if start is not None and span - start >= 7:
     gaps.append((start, span - 1))
 
-W, H, L, R, T, B = 1000, 380, 60, 20, 74, 52
+W, H, L, R, T, B = 1040, 400, 64, 24, 92, 54
 pw, ph = W - L - R, H - T - B
-INK, MUT, GRID, BLUE, GAP = "#222b36", "#8a97a5", "#eef1f4", "#3b73a8", "#e8ebee"
+FONT = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif"
+INK, MUT, GRID, BLUE, GAP = "#222b36", "#8a97a5", "#eef1f4", "#4a7fb5", "#eceff3"
 LOGMAX = 5  # y axis: 1 .. 10^5
 
 
@@ -49,31 +50,35 @@ def y(v):
 
 
 s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
-     f'font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">',
-     f'<rect width="{W}" height="{H}" fill="#fff"/>',
-     f'<text x="28" y="34" font-size="17" font-weight="600" fill="{INK}">Transactions expiring per day</text>',
-     f'<text x="28" y="54" font-size="12.5" fill="{MUT}">log scale; grey = no data in the extract '
-     f'(fleet/collection gaps, not real lulls)</text>']
+     f'font-family="{FONT}">',
+     f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
+     f'<text x="30" y="38" font-size="18" font-weight="600" fill="{INK}">How many transactions expire each day</text>',
+     f'<text x="30" y="60" font-size="13" fill="{MUT}">each line is one day (log scale). '
+     f'grey means no data was collected, not a quiet day.</text>']
 
 for a, b in gaps:
     s.append(f'<rect x="{x(a):.1f}" y="{T}" width="{max(1, x(b) - x(a)):.1f}" height="{ph}" fill="{GAP}"/>')
+if gaps:
+    a, b = max(gaps, key=lambda g: g[1] - g[0])
+    s.append(f'<text x="{(x(a)+x(b))/2:.1f}" y="{T+ph/2:.1f}" text-anchor="middle" '
+             f'font-size="12" fill="{MUT}">no data</text>')
 
 for p in range(LOGMAX + 1):
     yy = T + ph - (p / LOGMAX) * ph
     lab = ["1", "10", "100", "1k", "10k", "100k"][p]
     s.append(f'<line x1="{L}" y1="{yy:.1f}" x2="{L+pw}" y2="{yy:.1f}" stroke="{GRID}"/>')
-    s.append(f'<text x="{L-8}" y="{yy+4:.1f}" text-anchor="end" font-size="11" fill="{MUT}">{lab}</text>')
+    s.append(f'<text x="{L-10}" y="{yy+4:.1f}" text-anchor="end" font-size="11.5" fill="{MUT}">{lab}</text>')
 
 for i, v in enumerate(vals):
     if v > 0:
         s.append(f'<line x1="{x(i):.1f}" y1="{T+ph:.1f}" x2="{x(i):.1f}" y2="{y(v):.1f}" '
-                 f'stroke="{BLUE}" stroke-width="1"/>')
+                 f'stroke="{BLUE}" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.85"/>')
 
 cur = date(d0.year, d0.month, 1)
 while cur <= d1:
     i = (cur - d0).days
     if 0 <= i < span:
-        s.append(f'<text x="{x(i):.1f}" y="{T+ph+18:.1f}" text-anchor="middle" font-size="10" '
+        s.append(f'<text x="{x(i):.1f}" y="{T+ph+20:.1f}" text-anchor="middle" font-size="10.5" '
                  f'fill="{MUT}">{cur.strftime("%Y-%m")}</text>')
     m = cur.month + 3
     yv = cur.year + (m - 1) // 12

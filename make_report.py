@@ -100,9 +100,9 @@ nconf = c.execute("SELECT COUNT(*) FROM confirmation").fetchone()[0]
 nnot = total - nconf
 
 # 1. outcome
-hbar("fig_outcome.svg", "Fate of expired transactions",
-     [("confirmed", nconf), ("never confirmed", nnot)], BLUE,
-     note=f"{total:,} unique transactions, Feb 2024 to Oct 2026")
+hbar("fig_outcome.svg", "Were expired transactions mined later?",
+     [("mined", nconf), ("never mined", nnot)], BLUE,
+     note=f"{total:,} expired transactions, Feb 2024 to Oct 2026")
 
 # 2. confirmation % by month
 months = c.execute(
@@ -110,9 +110,9 @@ months = c.execute(
               SUM(CASE WHEN c.txid IS NOT NULL THEN 1 ELSE 0 END)*100.0/COUNT(*) pct
        FROM tx t LEFT JOIN confirmation c USING(txid)
        GROUP BY m ORDER BY m""").fetchall()
-area_line("fig_by_month.svg", "Confirmation rate by month of first expiry",
+area_line("fig_by_month.svg", "Share of expired txs later mined, by month",
           [m for m, _ in months], [p for _, p in months], BLUE,
-          note="share of that month's expired transactions later mined")
+          note="of the txs that expired each month, how many were mined afterwards")
 
 # 3. confirm delay (vs first_expiry). ~29% of confirmed txs were mined BEFORE their
 # first expiry: a single lagging node expired a tx already mined on-chain. Those are a
@@ -128,14 +128,14 @@ for d in delays:
     elif d < 30*D: dbkt["7-30d"] += 1
     elif d < 90*D: dbkt["30-90d"] += 1
     else: dbkt[">90d"] += 1
-hbar("fig_delay.svg", "Time from first expiry to confirmation", list(dbkt.items()), GREEN,
-     note="'before expiry' = tx already mined on-chain before a lagging node expired it")
+hbar("fig_delay.svg", "How long from expiry until the tx was mined", list(dbkt.items()), GREEN,
+     note="'before expiry' = already mined before the node expired it")
 
 # 4. n_nodes histogram
 nn = c.execute("SELECT n_nodes, COUNT(*) FROM tx GROUP BY n_nodes ORDER BY n_nodes").fetchall()
-hbar("fig_nnodes.svg", "Transactions by number of nodes that expired them",
+hbar("fig_nnodes.svg", "How many nodes expired each transaction",
      [(f"{k} nodes", v) for k, v in nn], SLATE,
-     note="how widely each transaction propagated across the fleet")
+     note="more nodes means the tx was seen more widely across the fleet")
 
 # 5. cross-node first-expiry spread
 c.execute("CREATE TEMP TABLE fe AS SELECT txid,node,MIN(ts) ts FROM expiry_event GROUP BY txid,node")
@@ -147,16 +147,16 @@ for (sp,) in c.execute("SELECT spread FROM sp"):
     for lab, hi in lim:
         if sp <= hi:
             sbkt[lab] += 1; break
-hbar("fig_crossnode.svg", "Cross-node spread of first expiry", list(sbkt.items()), BLUE,
-     note="txids seen by 2+ nodes: max minus min of per-node first expiry")
+hbar("fig_crossnode.svg", "Did nodes expire the same tx at the same time?", list(sbkt.items()), BLUE,
+     note="txs seen by 2+ nodes: gap between the first and last node to expire it")
 
 # rebroadcast (4a)
 rb = c.execute("SELECT COUNT(*) FROM rebroadcast").fetchone()[0]
 rbc = c.execute("SELECT COUNT(*) FROM rebroadcast WHERE confirmed_after_reentry=1").fetchone()[0]
-hbar("fig_rebroadcast.svg", "Rebroadcast after expiry (lower bound)",
-     [("rebroadcast evidence", rb), ("no evidence", total - rb)], BLUE,
-     note=f"re-entry seen via same-node repeat expiry; "
-          f"{100*rbc/max(rb,1):.0f}% of the rebroadcast ones confirmed")
+hbar("fig_rebroadcast.svg", "Were expired transactions sent again?",
+     [("sent again", rb), ("no sign of it", total - rb)], BLUE,
+     note=f"seen again after expiring (lower bound); "
+          f"{100*rbc/max(rb,1):.0f}% of those were later mined")
 
 # delay percentiles. dfirst = genuine "mined after expiry"; `before` = mined before a
 # lagging node expired it (would otherwise distort the percentiles downward by ~29%).
@@ -168,6 +168,22 @@ rng = c.execute("SELECT MIN(first_expiry),MAX(last_expiry) FROM tx").fetchone()
 nodes = c.execute("SELECT COUNT(DISTINCT node) FROM expiry_event").fetchone()[0]
 nspread = c.execute("SELECT COUNT(*) FROM sp").fetchone()[0]
 tight = sbkt["<=10s"] + sbkt["<=60s"]
+
+# surge distribution: baseline vs spikes, and whether volume changes the mined rate
+daily = sorted(n for _, n in c.execute(
+    "SELECT date(first_expiry,'unixepoch'), COUNT(*) FROM tx GROUP BY 1"))
+dtot = sum(daily) or 1
+med_day = daily[len(daily) // 2]
+mean_day = dtot / len(daily)
+desc = sorted(daily, reverse=True)
+top10 = 100 * sum(desc[:10]) / dtot
+top30 = 100 * sum(desc[:30]) / dtot
+drm = sorted(c.execute(
+    "SELECT COUNT(*) n, SUM(CASE WHEN c.txid IS NOT NULL THEN 1 ELSE 0 END) m "
+    "FROM tx t LEFT JOIN confirmation c USING(txid) "
+    "GROUP BY date(t.first_expiry,'unixepoch')").fetchall(), key=lambda r: -r[0])
+surge_rate = 100 * sum(r[1] for r in drm[:30]) / max(sum(r[0] for r in drm[:30]), 1)
+rest_rate = 100 * sum(r[1] for r in drm[30:]) / max(sum(r[0] for r in drm[30:]), 1)
 
 # --------------------------------------------------------------------------- #
 # REPORT.md
@@ -202,6 +218,22 @@ verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_
 ![by month](fig_by_month.svg)
 ![cross-node](fig_crossnode.svg)
 ![n_nodes](fig_nnodes.svg)
+
+## Surges or a constant stream
+Expiries are a low baseline with occasional big spikes. The median day has about {med_day:.0f}
+transactions expire; the mean is ~{mean_day:.0f} per day. The top 10 days are {top10:.0f}% of all
+expiries and the top 30 days {top30:.0f}%. Volume does not change the mined rate: {surge_rate:.1f}% on
+the top 30 surge days vs {rest_rate:.1f}% on all other days.
+
+![surges](fig_surges.svg)
+
+## What kind of transactions expire
+From a sample of the mined expired txs, read from their raw transaction: about 47% regular payments,
+40% runes, 11% ordinal inscriptions, 2% other data. The surges are almost all runes: the biggest surge
+days are 99 to 100% Runestone transactions. Only mined txs can be typed, since reading a raw tx needs
+the block and there is no txindex.
+
+![types](fig_types.svg)
 
 ## Limitations
 - Rebroadcast is a lower bound; the true rate needs the `AddedToMempool` stream.

@@ -108,35 +108,61 @@ else:
     results.append(tally(base, "baseline(all)"))
     json.dump(results, open(CACHE, "w"))
 
-# ---- SVG: horizontal stacked bars, one per day ----
-COL = {"inscription": "#c44e52", "rune": "#dd8452", "data": "#8172b3", "regular": "#55a868"}
-L, R, T = 150, 24, 70
-W = 920
-H = T + 46 * len(results) + 44
+# ---- SVG: rounded stacked bars, one per day ----
+ORDER = ["regular", "rune", "inscription", "data"]
+COL = {"regular": "#5aab82", "rune": "#e0a44e", "inscription": "#d06a6a", "data": "#8192ad"}
+NICE = {"regular": "regular payment", "rune": "rune", "inscription": "inscription", "data": "other data"}
+FONT = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif"
+INK, MUT = "#222b36", "#8a97a5"
+L, R, T, ROW, BH = 170, 90, 90, 46, 28
+W = 960
 bw = W - L - R
-s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
-     f'font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">',
-     f'<rect width="{W}" height="{H}" fill="#fff"/>',
-     f'<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">What are the expired transactions?</text>',
-     f'<text x="28" y="54" font-size="12.5" fill="#8a97a5">share by type, confirmed txs only (ordinals / runes / other OP_RETURN / regular)</text>']
-y = T
-for label, n, cats in results:
+H = T + ROW * len(results) + 60
+
+s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="{FONT}">',
+     f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
+     f'<defs>']
+for i in range(len(results)):
+    yy = T + i * ROW + (ROW - BH) / 2
+    s.append(f'<clipPath id="b{i}"><rect x="{L}" y="{yy:.1f}" width="{bw}" height="{BH}" rx="7"/></clipPath>')
+s.append('</defs>')
+s.append(f'<text x="30" y="36" font-size="18" font-weight="600" fill="{INK}">What kind of transactions expire?</text>')
+s.append(f'<text x="30" y="58" font-size="13" fill="{MUT}">share by type, for the expired txs that were later mined</text>')
+
+for i, (label, n, cats) in enumerate(results):
+    yy = T + i * ROW + (ROW - BH) / 2
+    name = "all expired" if label.startswith("baseline") else label
+    weight = "600" if name == "all expired" else "400"
+    s.append(f'<text x="{L-14}" y="{yy+BH/2+4.5:.1f}" text-anchor="end" font-size="13" '
+             f'font-weight="{weight}" fill="{INK}">{name}</text>')
+    # track + segments, clipped to a rounded rect
+    s.append(f'<g clip-path="url(#b{i})">')
+    s.append(f'<rect x="{L}" y="{yy:.1f}" width="{bw}" height="{BH}" fill="#eef1f4"/>')
     x = L
-    s.append(f'<text x="{L-10}" y="{y+22:.0f}" text-anchor="end" font-size="12.5" fill="#222b36">{label}</text>')
-    for k in ("inscription", "rune", "data", "regular"):
+    for k in ORDER:
         w = bw * cats[k] / max(n, 1)
-        if w > 0:
-            s.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="30" fill="{COL[k]}"/>')
-            if w > 34:
-                s.append(f'<text x="{x+w/2:.1f}" y="{y+20}" text-anchor="middle" font-size="11" '
-                         f'fill="#fff">{100*cats[k]/max(n,1):.0f}%</text>')
-            x += w
-    y += 46
+        if w <= 0:
+            continue
+        s.append(f'<rect x="{x:.2f}" y="{yy:.1f}" width="{w:.2f}" height="{BH}" fill="{COL[k]}"/>')
+        pct = 100 * cats[k] / max(n, 1)
+        if w > 30:
+            s.append(f'<text x="{x+w/2:.1f}" y="{yy+BH/2+4.5:.1f}" text-anchor="middle" '
+                     f'font-size="11.5" fill="#ffffff">{pct:.0f}%</text>')
+        x += w
+    # thin white separators between segments
+    x = L
+    for k in ORDER[:-1]:
+        x += bw * cats[k] / max(n, 1)
+        if 0 < x - L < bw:
+            s.append(f'<rect x="{x-0.9:.2f}" y="{yy:.1f}" width="1.8" height="{BH}" fill="#ffffff"/>')
+    s.append('</g>')
+
+# legend
 lx = L
-for k in ("inscription", "rune", "data", "regular"):
-    s.append(f'<rect x="{lx}" y="{H-26}" width="13" height="13" fill="{COL[k]}"/>')
-    s.append(f'<text x="{lx+18}" y="{H-15}" font-size="11.5" fill="#222b36">{k}</text>')
-    lx += 150
+for k in ORDER:
+    s.append(f'<rect x="{lx}" y="{H-30}" width="13" height="13" rx="3" fill="{COL[k]}"/>')
+    s.append(f'<text x="{lx+19}" y="{H-19}" font-size="12.5" fill="{INK}">{NICE[k]}</text>')
+    lx += 160
 s.append("</svg>")
 open("results/fig_types.svg", "w").write("\n".join(s))
 print("wrote results/fig_types.svg")

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="820" height="460" viewBox="0 0 820 460" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
 <rect width="820" height="460" fill="#ffffff"/>
-<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Cross-node spread of first expiry</text>
-<text x="28" y="55" font-size="12.5" fill="#8a97a5">txids seen by 2+ nodes: max minus min of per-node first expiry</text>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">Did nodes expire the same tx at the same time?</text>
+<text x="28" y="55" font-size="12.5" fill="#8a97a5">txs seen by 2+ nodes: gap between the first and last node to expire it</text>
 <rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
 <rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#3b73a8"/>
 <text x="150" y="118.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=10s</text>

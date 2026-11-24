@@ -21,20 +21,19 @@ verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_
 ![cross-node](fig_crossnode.svg)
 ![n_nodes](fig_nnodes.svg)
 
-## Surges vs constant stream
-Expiries are a low baseline punctuated by large surges. The median day sees about 100 txids expire, but
-the mean is ~1,500/day: the top 10 days account for ~31% of all expiries and the top 30 days for ~57%.
-The largest surges (2025-09-30, 2025-01, 2026-05-24) line up with fee-market congestion and mostly
-confirm later. The Aug-2026 spike is a single node (`nico`) expiring already-mined txs (see Limitations).
+## Surges or a constant stream
+Expiries are a low baseline with occasional big spikes. The median day has about 101
+transactions expire; the mean is ~1513 per day. The top 10 days are 31% of all
+expiries and the top 30 days 57%. Volume does not change the mined rate: 91.8% on
+the top 30 surge days vs 92.3% on all other days.
 
 ![surges](fig_surges.svg)
 
-## What are the expired transactions
-Sampling confirmed txids and reading the raw tx (ordinals envelope in witness, Runestone OP_RETURN,
-other OP_RETURN, else regular): overall about 47% are regular payments, 40% runes, 11% ordinal
-inscriptions, 2% other data. The surges are almost entirely runes: the big surge days (2025-09-30,
-2026-05-24, 2025-09-10) are 99-100% Runestone transactions. Regular payments expire at a steadier,
-lower rate. Only confirmed txs can be classified (raw tx needs the block hash; no txindex).
+## What kind of transactions expire
+From a sample of the mined expired txs, read from their raw transaction: about 47% regular payments,
+40% runes, 11% ordinal inscriptions, 2% other data. The surges are almost all runes: the biggest surge
+days are 99 to 100% Runestone transactions. Only mined txs can be typed, since reading a raw tx needs
+the block and there is no txindex.
 
 ![types](fig_types.svg)
 
