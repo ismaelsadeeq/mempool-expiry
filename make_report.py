@@ -128,9 +128,8 @@ for d in delays:
     elif d < 30*D: dbkt["7-30d"] += 1
     elif d < 90*D: dbkt["30-90d"] += 1
     else: dbkt[">90d"] += 1
-hbar("fig_delay.svg", "Time from first expiry to confirmation",
-     [(k, v) for k, v in dbkt.items() if v > 0], GREEN,
-     note="time from first expiry to the confirming block")
+hbar("fig_delay.svg", "Time from first expiry to confirmation", list(dbkt.items()), GREEN,
+     note="'before expiry' = tx already mined on-chain before a lagging node expired it")
 
 # 4. n_nodes histogram
 nn = c.execute("SELECT n_nodes, COUNT(*) FROM tx GROUP BY n_nodes ORDER BY n_nodes").fetchall()
@@ -184,16 +183,16 @@ many = c.execute("SELECT 100.0*SUM(CASE WHEN c.txid IS NOT NULL THEN 1 ELSE 0 EN
 report = f"""# Expired mempool transaction fate
 
 Data: `expiry.log.zst`, a `reason=expiry`-only extract from b10c's 15-node fleet. Window {d0} to {d1}:
-{nev:,} events, {total:,} unique genuine-expiry txids. (252,569 txids that were already mined on-chain
-before expiry are excluded as an artifact — see Limitations.) Method: block scan of an unpruned node,
-txid intersection, verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_SCAN_SPEC.md).
+{nev:,} events, {total:,} unique txids. Method: block scan of an unpruned node, txid intersection,
+verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_SPEC.md](../EXPIRY_SCAN_SPEC.md).
 
 | metric | value |
 | --- | --- |
 | confirmed | {nconf:,} ({100*nconf/total:.1f}%) |
 | never confirmed | {nnot:,} ({100*nnot/total:.1f}%) |
 | rebroadcast (lower bound) | {rb:,} ({100*rb/total:.1f}%), {100*rbc/max(rb,1):.1f}% of them confirmed |
-| confirm delay | p50 {pct(dfirst,50)/86400:.1f}d, p90 {pct(dfirst,90)/86400:.1f}d, max {max(dfirst)/86400:.0f}d |
+| mined before first expiry (lagging-node eviction) | {before:,} ({100*before/nconf:.0f}% of confirmed) |
+| confirm delay, mined after expiry | p50 {pct(dfirst,50)/86400:.1f}d, p90 {pct(dfirst,90)/86400:.1f}d, max {max(dfirst)/86400:.0f}d |
 | cross-node spread (2+ nodes) | p50 27s, {100*tight/max(nspread,1):.0f}% within 60s, 24% over 14d |
 | confirm rate, 1 node vs many | {one:.1f}% vs {many:.1f}% |
 
@@ -208,9 +207,9 @@ txid intersection, verified with `getrawtransaction`. Method spec: [EXPIRY_SCAN_
 - Rebroadcast is a lower bound; the true rate needs the `AddedToMempool` stream.
 - Replaced-vs-lost is not separable: an expired transaction is already evicted, so it is never logged
   as replaced; splitting it would need the expired transactions' inputs, which the logs do not carry.
-- 252,569 txids that were mined on-chain *before* they expired are excluded as a data artifact: a
-  single node (`nico`) was not evicting mined transactions from its mempool in Aug-Sep 2026 and expired
-  already-confirmed txs ~14 days later. Flagged to b10c. All figures here are the genuine-expiry set.
+- About 29% of confirmed txids were mined *before* their first expiry: a single lagging node expired a
+  tx that was already on-chain. They are reported separately; the "mined after expiry" delay excludes
+  them.
 - Coverage is not continuous: ~37% of calendar days in the window have no events in the extract
   (collection gaps, including a ~130-day gap in mid-2025), which limits temporal/continuity analysis.
 - The extract was also built without `grep -a`, dropping ~12 days.

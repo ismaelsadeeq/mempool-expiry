@@ -5,7 +5,7 @@
 <rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
 <rect x="166" y="103.0" width="504.0" height="22" rx="5" fill="#3b73a8"/>
 <text x="150" y="118.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=10s</text>
-<text x="680.0" y="118.0" font-size="12.5" fill="#8a97a5">247,267 (40%)</text>
+<text x="680.0" y="118.0" font-size="12.5" fill="#8a97a5">247,269 (40%)</text>
 <rect x="166" y="151.0" width="504.0" height="22" rx="5" fill="#f1f4f7"/>
 <rect x="166" y="151.0" width="185.8" height="22" rx="5" fill="#3b73a8"/>
 <text x="150" y="166.0" text-anchor="end" font-size="13.5" fill="#222b36">&lt;=60s</text>

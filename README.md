@@ -1,6 +1,6 @@
 # mempool-expiry
 
-Headline: 89.1% of expired transactions were later mined (610,883/685,586).
+Headline: 92.0% of expired transactions were later mined (863,454/938,157).
 
 - [Report and charts](results/REPORT.md)
 - [Method spec](EXPIRY_SCAN_SPEC.md)
