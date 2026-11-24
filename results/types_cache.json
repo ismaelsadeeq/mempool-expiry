@@ -1,0 +1,9 @@
+[
+ ["2025-09-30", 500, {"inscription":0,"rune":500,"data":0,"regular":0,"err":0}],
+ ["2026-05-24", 500, {"inscription":0,"rune":498,"data":0,"regular":2,"err":0}],
+ ["2025-09-10", 500, {"inscription":3,"rune":494,"data":0,"regular":3,"err":0}],
+ ["2025-01-23", 500, {"inscription":11,"rune":448,"data":1,"regular":40,"err":0}],
+ ["2025-01-12", 500, {"inscription":57,"rune":8,"data":0,"regular":435,"err":0}],
+ ["2026-08-23", 500, {"inscription":0,"rune":1,"data":17,"regular":482,"err":0}],
+ ["baseline(all)", 4000, {"inscription":428,"rune":1602,"data":84,"regular":1886,"err":0}]
+]

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="436" viewBox="0 0 920 436" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="920" height="436" fill="#fff"/>
+<text x="28" y="34" font-size="17" font-weight="600" fill="#222b36">What are the expired transactions?</text>
+<text x="28" y="54" font-size="12.5" fill="#8a97a5">share by type, confirmed txs only (ordinals / runes / other OP_RETURN / regular)</text>
+<text x="140" y="92" text-anchor="end" font-size="12.5" fill="#222b36">2025-09-30</text>
+<rect x="150.0" y="70" width="746.0" height="30" fill="#dd8452"/>
+<text x="523.0" y="90" text-anchor="middle" font-size="11" fill="#fff">100%</text>
+<text x="140" y="138" text-anchor="end" font-size="12.5" fill="#222b36">2026-05-24</text>
+<rect x="150.0" y="116" width="743.0" height="30" fill="#dd8452"/>
+<text x="521.5" y="136" text-anchor="middle" font-size="11" fill="#fff">100%</text>
+<rect x="893.0" y="116" width="3.0" height="30" fill="#55a868"/>
+<text x="140" y="184" text-anchor="end" font-size="12.5" fill="#222b36">2025-09-10</text>
+<rect x="150.0" y="162" width="4.5" height="30" fill="#c44e52"/>
+<rect x="154.5" y="162" width="737.0" height="30" fill="#dd8452"/>
+<text x="523.0" y="182" text-anchor="middle" font-size="11" fill="#fff">99%</text>
+<rect x="891.5" y="162" width="4.5" height="30" fill="#55a868"/>
+<text x="140" y="230" text-anchor="end" font-size="12.5" fill="#222b36">2025-01-23</text>
+<rect x="150.0" y="208" width="16.4" height="30" fill="#c44e52"/>
+<rect x="166.4" y="208" width="668.4" height="30" fill="#dd8452"/>
+<text x="500.6" y="228" text-anchor="middle" font-size="11" fill="#fff">90%</text>
+<rect x="834.8" y="208" width="1.5" height="30" fill="#8172b3"/>
+<rect x="836.3" y="208" width="59.7" height="30" fill="#55a868"/>
+<text x="866.2" y="228" text-anchor="middle" font-size="11" fill="#fff">8%</text>
+<text x="140" y="276" text-anchor="end" font-size="12.5" fill="#222b36">2025-01-12</text>
+<rect x="150.0" y="254" width="85.0" height="30" fill="#c44e52"/>
+<text x="192.5" y="274" text-anchor="middle" font-size="11" fill="#fff">11%</text>
+<rect x="235.0" y="254" width="11.9" height="30" fill="#dd8452"/>
+<rect x="247.0" y="254" width="649.0" height="30" fill="#55a868"/>
+<text x="571.5" y="274" text-anchor="middle" font-size="11" fill="#fff">87%</text>
+<text x="140" y="322" text-anchor="end" font-size="12.5" fill="#222b36">2026-08-23</text>
+<rect x="150.0" y="300" width="1.5" height="30" fill="#dd8452"/>
+<rect x="151.5" y="300" width="25.4" height="30" fill="#8172b3"/>
+<rect x="176.9" y="300" width="719.1" height="30" fill="#55a868"/>
+<text x="536.4" y="320" text-anchor="middle" font-size="11" fill="#fff">96%</text>
+<text x="140" y="368" text-anchor="end" font-size="12.5" fill="#222b36">baseline(all)</text>
+<rect x="150.0" y="346" width="79.8" height="30" fill="#c44e52"/>
+<text x="189.9" y="366" text-anchor="middle" font-size="11" fill="#fff">11%</text>
+<rect x="229.8" y="346" width="298.8" height="30" fill="#dd8452"/>
+<text x="379.2" y="366" text-anchor="middle" font-size="11" fill="#fff">40%</text>
+<rect x="528.6" y="346" width="15.7" height="30" fill="#8172b3"/>
+<rect x="544.3" y="346" width="351.7" height="30" fill="#55a868"/>
+<text x="720.1" y="366" text-anchor="middle" font-size="11" fill="#fff">47%</text>
+<rect x="150" y="410" width="13" height="13" fill="#c44e52"/>
+<text x="168" y="421" font-size="11.5" fill="#222b36">inscription</text>
+<rect x="300" y="410" width="13" height="13" fill="#dd8452"/>
+<text x="318" y="421" font-size="11.5" fill="#222b36">rune</text>
+<rect x="450" y="410" width="13" height="13" fill="#8172b3"/>
+<text x="468" y="421" font-size="11.5" fill="#222b36">data</text>
+<rect x="600" y="410" width="13" height="13" fill="#55a868"/>
+<text x="618" y="421" font-size="11.5" fill="#222b36">regular</text>
+</svg>
